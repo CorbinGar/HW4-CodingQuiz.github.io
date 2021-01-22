@@ -7,42 +7,32 @@
   <title>Coding Quiz</title>
   
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-  
 
+  <div class="col-md-4 offset-md-3">
 
+    
+      <div>
+        <div>
+          <h3 id = "text1"></h3>
+        </div>
 
-  <div class="col-md-12">
+        <div>
+          <h4 id = "text2"></h4>
+        </div>
 
-    <h1>Coding Quiz</h1>
+        <div id = "buttons">
 
-    <div >
-      <h3 id = "text1"></h3>
-    </div>
+        </div>
 
-    <div id = "buttons">
+        <div  id = "messages">
 
-    </div>
-
-    <div id = "messages">
-
-    </div>
-
+        </div>
+      </div>
   </div>
-
-
-
-
-
-  
-
-
-
-
-
- 
 
 
 
@@ -52,26 +42,33 @@
  var points = 0
  var questionumber = 0
 
-  var question1 = ["Commonly used data types do NOT incude",2,"Boolean","Integer","Array","Numbers"];
-  var question2 = ["Which brackets to hold the code that runs",3,"()","{}","[]","<>"];
-  var question3 = ["Which brackets hold the conditions",2,"()","{}","[]","<>"];
-  var question4 = ["<p> stands for what",2,"paragraph","parenthesis","pterodactyl"];
-  var quizarray = [question1 , question2 , question3 , question4]
+  var question0 = ["Coding Quiz Challenge","this is a small coding challenge to see how much you have improved over the course of this class",1,"Begin"];
+  var question1 = ["Commonly used data types do NOT incude","",2,"1 Boolean","2 Integer","3 Array","4 Numbers"];
+  var question2 = ["Which brackets to hold the code that runs","",3,"1 ()","2 {}","3 []","4 <>"];
+  var question3 = ["Which brackets hold the conditions","",2,"1 ()","2 {}","3 []","4 <>"];
+  var question4 = ["<p> stands for what","",2,"1 paragraph"," 2 parenthesis","3 pterodactyl"];
+  var quizarray = [question0, question1 , question2 , question3 , question4]
 
 
   $(document).ready(function() {
 
-    genbuttons(quizarray[questionumber],"#text1","#buttons")
+    genbuttons(quizarray[questionumber],"#text1","#text2","#buttons")
 
-    function genbuttons(array,texttarget,buttontarget){
-      $(texttarget).text(array[0])
-      for (var i = 0; i < (array.length - 2); i++) {
+    function genbuttons(array,texttarget1,texttarget2,buttontarget){
+
+
+      $(texttarget1).text(array[0])
+      $(texttarget2).text(array[1])
+
+      for (var i = 0; i < (array.length - 3); i++) {
+        var Div = $("<div>");
         var Btn = $("<button>");
         Btn.addClass("ques-button btn btn-primary");
         Btn.attr("myanswer", (i + 2));
-        Btn.attr("rightanswer", array[1]);
-        Btn.text((i + 1) + " " + array[(i + 2)]);
-        $(buttontarget).append(Btn);
+        Btn.attr("rightanswer", array[2]);
+        Btn.text(array[(i + 3)]);
+        $(buttontarget).append(Div);
+        $(Div).append(Btn);
       }
 
 
@@ -79,7 +76,7 @@
       $(".ques-button").on("click", function() {
         questionumber++
         $("#buttons").empty();
-        genbuttons(quizarray[questionumber],"#text1","#buttons")
+        genbuttons(quizarray[questionumber],"#text1","#text2","#buttons")
         if($(this).attr("myanswer") == $(this).attr("rightanswer")){
           points++
           $("#messages").text("correct " + points + " points total")
