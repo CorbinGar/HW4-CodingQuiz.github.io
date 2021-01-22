@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Quizinator</title>
+  <title>Coding Quiz</title>
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -13,24 +14,12 @@
 
 
 
-
-
-
-
-
-</script>
-  
-
-
-
-<ul id="textoutput"></ul>
-
   <div class="col-md-12">
 
-    <h1>Quiz time!</h1>
+    <h1>Coding Quiz</h1>
 
     <div >
-      <p id = "text1"></p>
+      <h3 id = "text1"></h3>
     </div>
 
     <div id = "buttons">
@@ -46,6 +35,17 @@
 
 
 
+
+  
+
+
+
+
+
+ 
+
+
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -53,8 +53,8 @@
  var questionumber = 0
 
   var question1 = ["Commonly used data types do NOT incude",2,"Boolean","Integer","Array","Numbers"];
-  var question2 = ["Functions use which brackets to hold the code that runs",3,"()","{}","[]","<>"];
-  var question3 = ["If statements use which brackets to determine what they will do",2,"()","{}","[]","<>"];
+  var question2 = ["Which brackets to hold the code that runs",3,"()","{}","[]","<>"];
+  var question3 = ["Which brackets hold the conditions",2,"()","{}","[]","<>"];
   var question4 = ["<p> stands for what",2,"paragraph","parenthesis","pterodactyl"];
   var quizarray = [question1 , question2 , question3 , question4]
 
@@ -67,10 +67,10 @@
       $(texttarget).text(array[0])
       for (var i = 0; i < (array.length - 2); i++) {
         var Btn = $("<button>");
-        Btn.addClass("ques-button");
+        Btn.addClass("ques-button btn btn-primary");
         Btn.attr("myanswer", (i + 2));
         Btn.attr("rightanswer", array[1]);
-        Btn.text((i + 1) + array[(i + 2)]);
+        Btn.text((i + 1) + " " + array[(i + 2)]);
         $(buttontarget).append(Btn);
       }
 
