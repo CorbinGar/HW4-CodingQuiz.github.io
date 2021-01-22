@@ -37,6 +37,10 @@
 
     </div>
 
+    <div id = "messages">
+
+    </div>
+
   </div>
 
 
@@ -46,10 +50,11 @@
 <script type="text/javascript">
 
 
- var questionumber = 1
+ var questionumber = 0
 
   var question1 = ["Commonly used data types do NOT incude",2,"Boolean","Integer","Array","Numbers"]
-  var question2 = ["Functions use which brackets should be used",3,"()","{}","[]","<>"]
+  var question2 = ["Functions use which brackets to hold the code that runs",3,"()","{}","[]","<>"]
+  var question2 = ["If statements use which brackets to determine what they will do",2,"()","{}","[]","<>"]
 
   var quizarray = [question1 , question2]
 
@@ -65,29 +70,21 @@
 
 
     function genbuttons(array,texttarget,buttontarget){
+      for (var i = 0; i < (array.length - 2); i++) {
 
-    $(texttarget).text(array[0])
+        var Btn = $("<button>");
 
+        Btn.addClass("ques-button");
 
+        Btn.attr("myanswer", (i + 2));
+        
+        Btn.attr("rightanswer", array[1]);
 
+        Btn.text((i + 1) + array[(i + 2)]);
 
-    for (var i = 0; i < (array.length - 2); i++) {
+        $(buttontarget).append(Btn);
 
-      var Btn = $("<button>");
-
-      Btn.addClass("ques-button");
-
-
-      Btn.attr("myanswer", (i + 2));
-      
-      Btn.attr("rightanswer", array[1]);
-
-      Btn.text((i + 1) + array[(i + 2)]);
-
-
-      $(buttontarget).append(Btn);
-
-    }
+      }
     }
 
 
@@ -95,9 +92,23 @@
 
     $(".ques-button").on("click", function() {
 
-      if((this).attr("myanswer") == (this).attr("rightanswer")){
-        alert("holy shit that worked")
+
+      questionumber =  questionumber + 1
+
+      $("#buttons").empty();
+
+      genbuttons(quizarray[questionumber],"#text1","#buttons")
+
+
+
+
+      if($(this).attr("myanswer") == $(this).attr("rightanswer")){
+
+        $("#messages").text("correct")
+      }else{
+        $("#messages").text("incorrect")
       }
+
    });
 
 
