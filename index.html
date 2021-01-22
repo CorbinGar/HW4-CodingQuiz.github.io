@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quizinator</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+
+  
+
+
+
+
+
+
+
+
+</script>
+  
+
+
+
+<ul id="textoutput"></ul>
+
+  <div class="col-md-12">
+
+    <h1>Quiz time!</h1>
+
+    <div >
+      <p id = "text1"></p>
+    </div>
+
+    <div id = "buttons">
+
+    </div>
+
+  </div>
+
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+ var questionumber = 1
+
+  var question1 = ["Commonly used data types do NOT incude",2,"Boolean","Integer","Array","Numbers"]
+  var question2 = ["Functions use which brackets should be used",3,"()","{}","[]","<>"]
+
+  var quizarray = [question1 , question2]
+
+  $(document).ready(function() {
+
+    genbuttons(quizarray[questionumber],"#text1","#buttons")
+
+
+
+
+
+
+
+
+    function genbuttons(array,texttarget,buttontarget){
+
+    $(texttarget).text(array[0])
+
+
+
+
+    for (var i = 0; i < (array.length - 2); i++) {
+
+      var Btn = $("<button>");
+
+      Btn.addClass("ques-button");
+
+
+      Btn.attr("myanswer", (i + 2));
+      
+      Btn.attr("rightanswer", array[1]);
+
+      Btn.text((i + 1) + array[(i + 2)]);
+
+
+      $(buttontarget).append(Btn);
+
+    }
+    }
+
+
+
+
+    $(".ques-button").on("click", function() {
+
+      if((this).attr("myanswer") == (this).attr("rightanswer")){
+        alert("holy shit that worked")
+      }
+   });
+
+
+
+
+
+  })
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+</script>
+  
+
+
+
+
+
+
+
+</body>
+</html>
