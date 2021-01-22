@@ -49,78 +49,64 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-
+ var points = 0
  var questionumber = 0
 
-  var question1 = ["Commonly used data types do NOT incude",2,"Boolean","Integer","Array","Numbers"]
-  var question2 = ["Functions use which brackets to hold the code that runs",3,"()","{}","[]","<>"]
-  var question2 = ["If statements use which brackets to determine what they will do",2,"()","{}","[]","<>"]
+  var question1 = ["Commonly used data types do NOT incude",2,"Boolean","Integer","Array","Numbers"];
+  var question2 = ["Functions use which brackets to hold the code that runs",3,"()","{}","[]","<>"];
+  var question3 = ["If statements use which brackets to determine what they will do",2,"()","{}","[]","<>"];
+  var question4 = ["<p> stands for what",2,"paragraph","parenthesis","pterodactyl"];
+  var quizarray = [question1 , question2 , question3 , question4]
 
-  var quizarray = [question1 , question2]
 
   $(document).ready(function() {
 
     genbuttons(quizarray[questionumber],"#text1","#buttons")
 
-
-
-
-
-
-
-
     function genbuttons(array,texttarget,buttontarget){
+      $(texttarget).text(array[0])
       for (var i = 0; i < (array.length - 2); i++) {
-
         var Btn = $("<button>");
-
         Btn.addClass("ques-button");
-
         Btn.attr("myanswer", (i + 2));
-        
         Btn.attr("rightanswer", array[1]);
-
         Btn.text((i + 1) + array[(i + 2)]);
-
         $(buttontarget).append(Btn);
-
       }
+
+
+
+      $(".ques-button").on("click", function() {
+        questionumber++
+        $("#buttons").empty();
+        genbuttons(quizarray[questionumber],"#text1","#buttons")
+        if($(this).attr("myanswer") == $(this).attr("rightanswer")){
+          points++
+          $("#messages").text("correct " + points + " points total")
+        }else{
+          $("#messages").text("incorrect " + points + " points total")
+        }
+      });
+
+
+
     }
-
-
-
-
-    $(".ques-button").on("click", function() {
-
-
-      questionumber =  questionumber + 1
-
-      $("#buttons").empty();
-
-      genbuttons(quizarray[questionumber],"#text1","#buttons")
-
-
-
-
-      if($(this).attr("myanswer") == $(this).attr("rightanswer")){
-
-        $("#messages").text("correct")
-      }else{
-        $("#messages").text("incorrect")
-      }
-
-   });
+  });
 
 
 
 
 
-  })
+
+
+ 
 
 
 
 
 
+      
+    
 
 
 
